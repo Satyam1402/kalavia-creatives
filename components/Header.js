@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Mail, ArrowUpRight } from "lucide-react";
 import site, { waLink } from "@/data/site";
 import BrandK from "@/components/BrandK";
-import { WhatsAppIcon } from "@/components/icons";
+import { WhatsAppIcon, InstagramIcon } from "@/components/icons";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -96,7 +96,10 @@ export default function Header() {
               transition={{ type: "tween", duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="drawer-head">
-                <span className="brand-name">{site.brand.name}</span>
+                <span className="brand">
+                  <BrandK />
+                  <span className="brand-name">{site.brand.name}</span>
+                </span>
                 <button
                   className="menu-btn"
                   onClick={() => setOpen(false)}
@@ -106,24 +109,54 @@ export default function Header() {
                 </button>
               </div>
 
+              <div className="drawer-offer">
+                <span className="drawer-offer-tag">{site.hero.badge}</span>
+                <span className="drawer-offer-note">{site.hero.badgeNote}</span>
+              </div>
+
               <nav className="drawer-nav" aria-label="Mobile">
-                {site.nav.map((n) => (
+                {site.nav.map((n, i) => (
                   <a key={n.href} href={n.href} onClick={() => setOpen(false)}>
-                    {n.label}
+                    <span className="drawer-num">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="drawer-label">{n.label}</span>
+                    <ArrowUpRight size={17} className="drawer-arrow" />
                   </a>
                 ))}
               </nav>
 
-              <a
-                className="btn btn-wa btn-block"
-                href={waLink(site.whatsapp.defaultMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setOpen(false)}
-              >
-                <WhatsAppIcon size={18} />
-                {site.whatsapp.buttonLabel}
-              </a>
+              <div className="drawer-foot">
+                <a
+                  className="btn btn-wa btn-block"
+                  href={waLink(site.whatsapp.defaultMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                >
+                  <WhatsAppIcon size={18} />
+                  {site.whatsapp.buttonLabel}
+                </a>
+
+                <div className="drawer-links">
+                  <a
+                    href={site.footer.instagram.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setOpen(false)}
+                  >
+                    <InstagramIcon size={16} />
+                    {site.footer.instagram.handle}
+                  </a>
+                  <a
+                    href={`mailto:${site.footer.email}`}
+                    onClick={() => setOpen(false)}
+                  >
+                    <Mail size={16} />
+                    {site.footer.email}
+                  </a>
+                </div>
+              </div>
             </motion.div>
           </>
         )}

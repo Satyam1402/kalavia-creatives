@@ -157,10 +157,6 @@ export default function Hero() {
               <PosterMockup item={portfolio.items[3]} />
             </div>
 
-            <div className="hc hc-chip">
-              <span className="hc-chip-top">FIRST POSTER</span>
-              <span className="hc-chip-big">FREE</span>
-            </div>
           </div>
         </div>
       </div>
