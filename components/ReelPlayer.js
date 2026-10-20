@@ -80,7 +80,7 @@ export default function ReelPlayer({ item, badge }) {
         <button
           className="reel-play reel-play-btn"
           onClick={toggle}
-          aria-label={`${item.title} play karein`}
+          aria-label={`${item.title} play`}
         >
           <Play size={22} strokeWidth={2} fill="currentColor" />
         </button>
@@ -89,7 +89,7 @@ export default function ReelPlayer({ item, badge }) {
       <button
         className="reel-sound"
         onClick={toggleSound}
-        aria-label={muted ? "Sound on karein" : "Sound off karein"}
+        aria-label={muted ? "Turn sound on" : "Turn sound off"}
       >
         {muted ? <VolumeX size={15} /> : <Volume2 size={15} />}
       </button>

@@ -36,8 +36,10 @@ convert into **WhatsApp enquiries**.
 ## Hard rules / conventions
 - **ALL editable content lives in `data/site.js`** (text, prices, FAQ, contacts,
   nav, seasonal banner, SEO). Never hardcode copy inside components.
-- Copy is **Hinglish** (Hindi in English letters), simple words, aimed at local
-  business owners. **Never mention any city or country.**
+- Copy is **plain English everywhere** — simple, short sentences aimed at local
+  business owners. (It used to be Hinglish; it was **deliberately converted to
+  full English** on request, including every WhatsApp prefilled message and every
+  aria-label. Do not reintroduce Hinglish.) **Never mention any city or country.**
 - No backend, no database, no real forms. Every action is a WhatsApp / Instagram /
   `mailto` link. Use the `waLink(message, number?)` helper from `data/site.js`.
 - **ONE WhatsApp number only: 919131267176** (the secondary number was removed).
@@ -136,6 +138,13 @@ Nav anchors (in `data/site.js`): Work, Reels, Services, Websites, Pricing, Conta
       `transformationStory.handle` + `.bio`.
     - `.ig-cell` sets `container-type: inline-size` — required, or the `cqi`
       glyph sizing falls back to the viewport and the emoji become huge.
+    - **Layout split:** phone + grid live in a `.story-media` wrapper.
+      **Mobile/tablet (<1024px)** the stage is an in-flow flex column —
+      rail / media / caption / CTA via `order`, so nothing overlaps, and the
+      phone **fades out** as the grid fades in. **Desktop (>=1024px)** sets
+      `.story-media { display: contents }` so the original absolute composition
+      (captions left, rail right, grid right, phone centred) still works.
+      The stage reserves `--header-h` of top padding so the rail clears the header.
   - **Marquee** — two opposite outlined-text strips; speed nudges with scroll
     velocity. **Portfolio** — clip-path wipe reveal + desktop parallax collage
     (speeds in `Portfolio.js SPEEDS`), mobile scroll-snap swipe row.

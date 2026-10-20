@@ -96,7 +96,7 @@ export default function Portfolio() {
               <button
                 className="portfolio-btn"
                 onClick={() => setOpen(i)}
-                aria-label={`${p.title} — ${p.category} — bada dekhein`}
+                aria-label={`${p.title} — ${p.category} — view larger`}
               >
                 <PosterMockup item={p} />
                 <span className="portfolio-hover">
@@ -136,7 +136,7 @@ export default function Portfolio() {
             <button
               className="lightbox-close"
               onClick={() => setOpen(null)}
-              aria-label="Band karein"
+              aria-label="Close"
             >
               <X size={22} />
             </button>

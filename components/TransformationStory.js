@@ -74,7 +74,7 @@ export default function TransformationStory() {
         gsap.set(".story-grid", { opacity: 0, scale: 0.92 });
         gsap.set(".story-react", { opacity: 0, scale: 0.6 });
         gsap.set(".story-cta", { opacity: 0, y: 18 });
-        gsap.set(".story-phone", { scale: 1, xPercent: 0, yPercent: 0 });
+        gsap.set(".story-phone", { scale: 1, xPercent: 0, yPercent: 0, opacity: 1 });
       };
 
       const build = (desktop) => {
@@ -115,7 +115,11 @@ export default function TransformationStory() {
             "+=0.25"
           ).to(".story-grid", { opacity: 1, scale: 1, duration: 0.8 }, "<0.1");
         } else {
-          tl.to(".story-grid", { opacity: 1, scale: 1, duration: 0.7 }, "+=0.25");
+          tl.to(
+            ".story-phone",
+            { opacity: 0, scale: 0.92, duration: 0.5 },
+            "+=0.25"
+          ).to(".story-grid", { opacity: 1, scale: 1, duration: 0.7 }, "<0.1");
         }
         tl.to(
           ".story-react",
@@ -165,6 +169,7 @@ export default function TransformationStory() {
       <div className="story-wrap">
         <div className="story-pin" ref={pinRef}>
           <div className="story-stage">
+            <div className="story-media">
             <div className="story-phone phone" aria-hidden="true">
               <span className="phone-notch" />
               <StoryPoster p={story.poster} />
@@ -203,6 +208,8 @@ export default function TransformationStory() {
               <span className="story-react story-react-2">
                 <MessageCircle size={14} fill="currentColor" /> 24
               </span>
+            </div>
+
             </div>
 
             {/* Side captions (crossfade by step) */}

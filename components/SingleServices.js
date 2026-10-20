@@ -28,7 +28,7 @@ export default function SingleServices() {
                   href={waLink(msg)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`${item.name} ke liye WhatsApp karein`}
+                  aria-label={`${item.name} — message on WhatsApp`}
                 >
                   <MessageCircle size={16} />
                   <span>Enquire</span>

@@ -2,6 +2,7 @@
 //  Kalavia Creatives — ALL editable content lives in this file.
 //  Edit text, prices, FAQ, contact details, packages and the
 //  seasonal banner here. You do NOT need to touch any component.
+//  Copy language: plain English everywhere.
 // =============================================================
 
 // WhatsApp number (international format: no +, no spaces). One number only.
@@ -12,10 +13,10 @@ export function waLink(message, number = PRIMARY_WA) {
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 
-// Launch offer terms — poori baat sirf pricing section mein, one-time services
-// sirf usi ko refer karti hai (same text do jagah repeat nahi hota).
+// Launch offer terms — stated in full only in the pricing section; the
+// one-time services section just refers back to it (no duplicated text).
 const LAUNCH_OFFER =
-  "Launch pricing — pehle 10 clients ke liye ya 31 December 2026 tak, jo pehle aaye. Kaata hua price standard rate hai, jo 1 Jan 2027 se lagu hoga.";
+  "Launch pricing — for the first 10 clients or until 31 December 2026, whichever comes first. The struck-through price is the standard rate, which applies from 1 January 2027.";
 
 const site = {
   // ---------- Brand ----------
@@ -29,9 +30,9 @@ const site = {
   // ---------- WhatsApp ----------
   whatsapp: {
     primary: PRIMARY_WA,
-    buttonLabel: "WhatsApp karein",
+    buttonLabel: "Message on WhatsApp",
     defaultMessage:
-      "Hi Kalavia Creatives, mujhe apne business ke liye posters, reels aur website ke baare mein jaanna hai.",
+      "Hi Kalavia Creatives, I would like to know more about posters, reels and websites for my business.",
   },
 
   // ---------- Navigation (in-page anchors) ----------
@@ -51,41 +52,36 @@ const site = {
     headingPre: "Your business deserves to",
     headingAccent: "look unforgettable.",
     subline:
-      "Posters jo attention grab karein, reels jo story batayein, aur websites jo aapke brand ko premium look dein.",
+      "Posters that grab attention, reels that tell your story, and websites that give your brand a premium look.",
     primaryBtn: "Let's create something",
     primaryMsg:
-      "Hi Kalavia Creatives, mujhe apne business ke liye creative designs aur website ke baare mein baat karni hai.",
+      "Hi Kalavia Creatives, I would like to talk about creative designs and a website for my business.",
     secondaryBtn: "Explore our work",
     badge: "Your first poster is FREE",
-    badgeNote: "Ek sample design se shuruaat karein.",
+    badgeNote: "Start with one sample design.",
     // Small trust row under the composition (kept minimal & honest).
-    trust: [
-      "Posters & carousels",
-      "Reel editing",
-      "Websites",
-      "Logo & branding",
-    ],
+    trust: ["Posters & carousels", "Reel editing", "Websites", "Logo & branding"],
   },
 
-  // ---------- Poster transformation scroll story (replaces old showcase) ----------
+  // ---------- Poster transformation scroll story ----------
   // Pinned + scrubbed on desktop, crossfade on mobile, plain list on reduced motion.
   // Sample/concept demonstration — not a real client result.
   transformationStory: {
     eyebrow: "POSTER TRANSFORMATION",
-    heading: "Ek boring poster se scroll-stopping post tak.",
-    note: "Ye ek sample transformation hai — concept demonstration, actual client result nahi.",
-    ctaLabel: "Aisa poster banwayein",
+    heading: "From a plain poster to a scroll-stopping post.",
+    note: "This is a sample transformation — a concept demonstration, not a real client result.",
+    ctaLabel: "Get a poster like this",
     ctaMsg:
-      "Hi Kalavia Creatives, mujhe apne business ke liye aisa professional poster chahiye.",
+      "Hi Kalavia Creatives, I would like a professional poster like this for my business.",
     // Poster copy used across the steps (edit freely).
     poster: {
       brand: "THE COFFEE CO.",
       plain: "Coffee Available",
       headline: "Cold Coffee",
-      price: "sirf ₹99",
+      price: "only ₹99",
       detail: "Thick · Creamy · Chilled",
       offer: "Today's Offer",
-      cta: "Aaj hi aaiye",
+      cta: "Visit us today",
     },
     // Final step: the rest of the Instagram feed around the finished post.
     handle: "@thecoffeeco",
@@ -101,11 +97,11 @@ const site = {
       { glyph: "📍", label: "Visit us" },
     ],
     steps: [
-      { n: "01", caption: "Aapka poster abhi aisa hai?" },
-      { n: "02", caption: "Sahi colour aur photo" },
-      { n: "03", caption: "Headline jo rok de" },
-      { n: "04", caption: "Offer aur brand" },
-      { n: "05", caption: "Ab aapka Instagram aisa dikhega" },
+      { n: "01", caption: "Is this what your poster looks like?" },
+      { n: "02", caption: "The right colour and photo" },
+      { n: "03", caption: "A headline that stops the scroll" },
+      { n: "04", caption: "The offer and your branding" },
+      { n: "05", caption: "Now this is how your Instagram looks" },
     ],
   },
 
@@ -117,23 +113,23 @@ const site = {
 
   // ---------- Closing finale ----------
   closing: {
-    kicker: "Chaliye shuru karein",
-    heading: "Aapke brand ka agla look, yahin se.",
-    text: "Pehla poster free. WhatsApp par ek message bhejein, hum sample bana denge.",
-    buttonLabel: "WhatsApp par baat karein",
+    kicker: "Let's get started",
+    heading: "Your brand's next look starts right here.",
+    text: "Your first poster is free. Send one message on WhatsApp and we will make a sample for you.",
+    buttonLabel: "Message on WhatsApp",
     message:
-      "Hi Kalavia Creatives, mujhe apne business ke liye designs chahiye. Pehla sample bana dijiye.",
+      "Hi Kalavia Creatives, I need designs for my business. Please make the first sample.",
     wordmark: "KALAVIA",
   },
 
   // ---------- Portfolio (demonstration concepts, NOT client work) ----------
   portfolio: {
     eyebrow: "SELECTED CREATIVE WORK",
-    heading: "Concepts jo har business ko premium look dete hain.",
-    note: "Ye demonstration concepts hain — hamari creative range dikhane ke liye. Ye actual client projects nahi hain.",
-    ctaLabel: "Aisa concept apne business ke liye banwayein",
+    heading: "Concepts that make any business look premium.",
+    note: "These are demonstration concepts, made to show our creative range. They are not actual client projects.",
+    ctaLabel: "Get a concept like this for your business",
     ctaMsg:
-      "Hi Kalavia Creatives, mujhe aise creative posters apne business ke liye chahiye.",
+      "Hi Kalavia Creatives, I would like creative posters like these for my business.",
     // Each item renders as an art-directed CSS "poster" mockup. Set `image`
     // (e.g. "/samples/restaurant.jpg") to show a real photo instead.
     items: [
@@ -207,26 +203,26 @@ const site = {
   },
 
   // ---------- Reels ----------
-  // Har card ka 'video' = /reels/<file>.mp4 aur 'poster' = pehla frame
-  // (thumbnail). Dono khaali ho to animated concept frame dikhta hai.
+  // Each card's `video` = /reels/<file>.mp4 and `poster` = first frame
+  // (thumbnail). If both are empty, the animated concept frame is shown.
   reels: {
     eyebrow: "REELS IN MOTION",
-    heading: "Static se aage — reels jo scroll rok dein.",
-    note: "Har reel aapke business ke liye shoot aur edit hoti hai — dish, transformation ya nayi collection, sab ek short video mein. Ye sample concepts hain; aapki reel aapke brand par banegi.",
+    heading: "Beyond static — reels that stop the scroll.",
+    note: "Every reel is shot and edited for your business — a dish, a transformation or a new collection, all in one short video. These are sample concepts; your reel will be built around your brand.",
     badges: { reel: "REEL" },
-    ctaLabel: "Apne business ke liye reel banwayein",
-    ctaMsg:
-      "Hi Kalavia Creatives, mujhe apne business ke liye ek edited reel chahiye.",
-    ctaAltLabel: "AI video ke baare mein poochein",
+    ctaLabel: "Get a reel for your business",
+    ctaMsg: "Hi Kalavia Creatives, I would like an edited reel for my business.",
+    ctaAltLabel: "Ask about AI video",
     ctaAltMsg:
-      "Hi Kalavia Creatives, mujhe apne business ke liye AI animated video (festival / logo reveal / website promo) ke baare mein jaanna hai.",
+      "Hi Kalavia Creatives, I would like to know about AI animated video (festival / logo reveal / website promo) for my business.",
     items: [
       {
         format: "reel",
         kind: "restaurant",
         category: "Restaurant",
         title: "Thali & signature dish",
-        caption: "Garam tadke se serving tak — khaana screen par hi mooh mein paani laaye.",
+        caption:
+          "From the sizzle to the serve — food that looks irresistible on screen.",
         glyph: "🍛",
         video: "/reels/restaurant.mp4",
         poster: "/reels/restaurant.jpg",
@@ -236,7 +232,7 @@ const site = {
         kind: "salon",
         category: "Salon",
         title: "Bridal makeover reel",
-        caption: "Before se after tak — dulhan ka final look ek smooth reveal mein.",
+        caption: "Before to after — the final bridal look in one smooth reveal.",
         glyph: "💄",
         video: "/reels/salon.mp4",
         poster: "/reels/salon.jpg",
@@ -246,7 +242,7 @@ const site = {
         kind: "jewellery",
         category: "Jewellery",
         title: "Gold collection close-up",
-        caption: "Macro shots, warm light aur shine — har design alag se chamke.",
+        caption: "Macro shots, warm light and shine — every design stands out.",
         glyph: "💍",
         video: "/reels/jewellery.mp4",
         poster: "/reels/jewellery.jpg",
@@ -257,55 +253,55 @@ const site = {
   // ---------- Services ----------
   services: {
     eyebrow: "WHAT WE CREATE",
-    heading: "Ek studio, aapke brand ki poori creative zaroorat ke liye.",
+    heading: "One studio for everything your brand needs.",
     subline:
-      "Cafés, restaurants, salons, jewellery, boutiques, gyms aur baaki local businesses — har design ka ek clear purpose hona chahiye.",
-    ctaLabel: "Apne business ke liye discuss karein",
+      "Cafés, restaurants, salons, jewellery shops, boutiques, gyms and other local businesses — every design should have a clear purpose.",
+    ctaLabel: "Discuss your business with us",
     ctaMsg:
-      "Hi Kalavia Creatives, mujhe apne business ke liye design services ke baare mein baat karni hai.",
+      "Hi Kalavia Creatives, I would like to talk about design services for my business.",
     items: [
       {
         icon: "posters",
         title: "Social media posters",
-        text: "Offers, launches aur daily specials ko scroll-stopping designs mein badlein.",
+        text: "Turn offers, launches and daily specials into scroll-stopping designs.",
       },
       {
         icon: "reels",
         title: "Reel editing",
-        text: "Aap video shoot karein, hum usse engaging, on-brand reel mein edit karenge.",
+        text: "You shoot the video, we edit it into an engaging, on-brand reel.",
       },
       {
         icon: "web",
         title: "Website design",
-        text: "Premium one-page aur multi-page static websites — mobile-ready aur fast.",
+        text: "Premium one-page and multi-page static websites — fast and mobile-ready.",
       },
       {
         icon: "festival",
         title: "Festival campaigns",
-        text: "Festivals aur special occasions ke liye coordinated creative designs.",
+        text: "Coordinated creative designs for festivals and special occasions.",
       },
       {
         icon: "menu",
         title: "Menu & carousels",
-        text: "Menu cards aur carousels — clean, attractive aur easy-to-read layouts.",
+        text: "Menu cards and carousels — clean, attractive, easy-to-read layouts.",
       },
       {
         icon: "logo",
         title: "Logo & branding",
-        text: "Aapke business ke liye ek distinctive visual identity aur profile setup.",
+        text: "A distinctive visual identity and profile setup for your business.",
       },
     ],
   },
 
-  // ---------- Website design (NEW service) ----------
+  // ---------- Website design ----------
   websites: {
     eyebrow: "WEBSITE DESIGN",
     heading: "Websites that make your business look premium.",
     subline:
-      "Sirf social media nahi — apne business ki online identity ko bhi professional banayein. Starting ₹3,999.",
-    buttonLabel: "Is package ke baare mein poochein",
+      "Not just social media — make your online identity look professional too. Starting at ₹3,999.",
+    buttonLabel: "Ask about this package",
     // Honest scope note shown under the packages.
-    note: "Ye proposed package scopes hain. Domain registration, paid hosting, paid integrations, advanced functionality aur ongoing maintenance alag se hain — jab tak quotation mein clearly include na ho. Online store, payment gateway ya booking system in prices mein included nahi hai.",
+    note: "These are proposed package scopes. Domain registration, paid hosting, paid integrations, advanced functionality and ongoing maintenance are charged separately unless clearly included in the quotation. An online store, payment gateway or booking system is not included in these prices.",
     // Browser-style demo previews (concepts, not client sites).
     demosLabel: "Demo website concepts",
     demos: [
@@ -345,7 +341,7 @@ const site = {
           "Social media links",
           "Basic page metadata",
         ],
-        msg: "Hi Kalavia Creatives, mujhe ₹3,999 website package ke baare mein jaanna hai.",
+        msg: "Hi Kalavia Creatives, I would like to know about the ₹3,999 website package.",
       },
       {
         name: "Business website",
@@ -361,7 +357,7 @@ const site = {
           "Fully responsive design",
           "Basic on-page SEO metadata",
         ],
-        msg: "Hi Kalavia Creatives, mujhe ₹6,999 website package ke baare mein jaanna hai.",
+        msg: "Hi Kalavia Creatives, I would like to know about the ₹6,999 website package.",
       },
       {
         name: "Premium website",
@@ -376,7 +372,7 @@ const site = {
           "Responsive layouts",
           "Basic SEO + social-sharing setup",
         ],
-        msg: "Hi Kalavia Creatives, mujhe ₹9,999 website package ke baare mein jaanna hai.",
+        msg: "Hi Kalavia Creatives, I would like to know about the ₹9,999 website package.",
       },
     ],
   },
@@ -384,27 +380,27 @@ const site = {
   // ---------- Why Kalavia ----------
   why: {
     eyebrow: "WHY WORK WITH US",
-    heading: "Achhe design ke saath, kaam karna bhi easy.",
+    heading: "Great design, and easy to work with.",
     points: [
       {
         icon: "palette",
-        title: "Brand ke hisaab se design",
-        text: "Har design aapke brand aur offer ke liye specially banaya jaata hai.",
+        title: "Designed around your brand",
+        text: "Every design is made specifically for your brand and your offer.",
       },
       {
         icon: "badge",
         title: "Clear packages, transparent pricing",
-        text: "Koi hidden charge nahi. Jo dikhta hai, wahi price hai.",
+        text: "No hidden charges. The price you see is the price you pay.",
       },
       {
         icon: "zap",
-        title: "Simple approval & revisions",
-        text: "Seedha process — approve karein, feedback dein, final le lein.",
+        title: "Simple approvals & revisions",
+        text: "A straightforward process — approve, share feedback, get the final files.",
       },
       {
         icon: "shield",
-        title: "Original content, direct baat",
-        text: "100% original creative work aur aapse seedhi communication.",
+        title: "Original work, direct contact",
+        text: "100% original creative work and direct communication with you.",
       },
     ],
   },
@@ -412,9 +408,9 @@ const site = {
   // ---------- Monthly pricing ----------
   plans: {
     eyebrow: "MONTHLY PLANS",
-    heading: "Apne business ke liye sahi plan chuniye.",
+    heading: "Choose the right plan for your business.",
     offerLine: LAUNCH_OFFER,
-    buttonLabel: "Ye plan chahiye",
+    buttonLabel: "I want this plan",
     items: [
       {
         name: "Starter",
@@ -423,7 +419,7 @@ const site = {
         period: "/month",
         popular: false,
         features: ["8 posters", "Captions included", "2 revisions"],
-        msg: "Hi Kalavia Creatives, mujhe Starter plan ke baare mein jaanna hai.",
+        msg: "Hi Kalavia Creatives, I would like to know about the Starter plan.",
       },
       {
         name: "Growth",
@@ -438,7 +434,7 @@ const site = {
           "Captions and hashtags",
           "Content plan",
         ],
-        msg: "Hi Kalavia Creatives, mujhe Growth plan ke baare mein jaanna hai.",
+        msg: "Hi Kalavia Creatives, I would like to know about the Growth plan.",
       },
       {
         name: "Pro",
@@ -454,7 +450,7 @@ const site = {
           "Monthly report",
           "Posting schedule assistance",
         ],
-        msg: "Hi Kalavia Creatives, mujhe Pro plan ke baare mein jaanna hai.",
+        msg: "Hi Kalavia Creatives, I would like to know about the Pro plan.",
       },
     ],
   },
@@ -462,11 +458,11 @@ const site = {
   // ---------- Single (one-time) services ----------
   singleServices: {
     eyebrow: "ONE-TIME SERVICES",
-    heading: "Ek design chahiye? Woh bhi ho jayega.",
-    offerNote: "Yahi launch pricing one-time services par bhi lagu hai.",
+    heading: "Need just one design? That works too.",
+    offerNote: "The same launch pricing applies to one-time services.",
     // WhatsApp message template; [service] is replaced by the service name.
     ctaMsgTemplate:
-      "Hi Kalavia Creatives, mujhe [service] chahiye. Details bataiye.",
+      "Hi Kalavia Creatives, I would like a [service]. Please share the details.",
     items: [
       { name: "Single poster", standard: "₹499", launch: "₹249" },
       { name: "Festival pack — 5 posters", standard: "₹1,999", launch: "₹999" },
@@ -484,20 +480,20 @@ const site = {
     heading: "Simple process. Clear expectations.",
     steps: [
       {
-        title: "WhatsApp par baat karein",
-        text: "Aapka business, offer aur design requirement samajhte hain.",
+        title: "Talk to us on WhatsApp",
+        text: "We understand your business, your offer and your design requirements.",
       },
       {
-        title: "Pehla poster free",
-        text: "Ek sample design bana kar bhejte hain — bilkul free.",
+        title: "First poster free",
+        text: "We design and send you one sample — completely free.",
       },
       {
         title: "Approve and confirm",
-        text: "Pasand aaye to scope confirm karein aur 50% advance dein.",
+        text: "If you like it, confirm the scope and pay a 50% advance.",
       },
       {
         title: "Final delivery",
-        text: "Baaki payment ke baad final files, jaisa tay hua tha.",
+        text: "You get the final files after the remaining payment, exactly as agreed.",
       },
     ],
   },
@@ -505,10 +501,9 @@ const site = {
   // ---------- Our own creative work ----------
   ownWork: {
     eyebrow: "OUR OWN PRACTICE",
-    heading: "Hum apna content khud banate hain.",
-    text:
-      "Hum apna Instagram page bhi chalate hain — @indiabriefed.in. Uske posters, reels aur captions hum khud banate hain. Yeh hamari creative practice aur content workflow ka ek example hai.",
-    buttonLabel: "Hamara Instagram dekhein",
+    heading: "We create our own content too.",
+    text: "We also run our own Instagram page — @indiabriefed.in. We design its posters, edit its reels and write its captions ourselves. It is an example of our creative practice and content workflow.",
+    buttonLabel: "View our Instagram",
     handle: "@indiabriefed.in",
     link: "https://instagram.com/indiabriefed.in",
   },
@@ -516,39 +511,39 @@ const site = {
   // ---------- FAQ ----------
   faq: {
     eyebrow: "FAQ",
-    heading: "Aapke sawaal, seedhe jawaab.",
+    heading: "Your questions, answered directly.",
     items: [
       {
-        q: "Aap kis type ke business ke liye kaam karte hain?",
-        a: "Cafés, restaurants, salons, jewellery shops, boutiques, gyms aur baaki local businesses — sabke liye. Website par dikhaye gaye designs demonstration concepts hain, actual client projects nahi.",
+        q: "What kinds of businesses do you work with?",
+        a: "Cafés, restaurants, salons, jewellery shops, boutiques, gyms and other local businesses. The designs shown on this website are demonstration concepts, not actual client projects.",
       },
       {
-        q: "Video kaun shoot karega?",
-        a: "Video aap shoot karenge — phone se bhi chalega. Editing hum karenge.",
+        q: "Who shoots the video?",
+        a: "You shoot the video — a phone camera works fine. We handle the editing.",
       },
       {
-        q: "Website package mein kya milta hai?",
-        a: "Static websites — Launch (₹3,999), Business (₹6,999) aur Premium (₹9,999). Domain, paid hosting, online store, payment gateway aur booking system in prices mein included nahi hain, jab tak quotation mein clearly na likha ho.",
+        q: "What is included in a website package?",
+        a: "Static websites — Launch (₹3,999), Business (₹6,999) and Premium (₹9,999). Domain, paid hosting, an online store, a payment gateway and a booking system are not included in these prices unless clearly stated in the quotation.",
       },
       {
-        q: "Instagram par post kaun karega?",
-        a: "Posters aur captions hum banate hain; publishing aap karte hain. Pro plan mein posting schedule karne mein madad milti hai. Daily DM replies aur comment management abhi included nahi hain.",
+        q: "Who posts on Instagram?",
+        a: "We create the posters and captions; you publish them. The Pro plan includes help with scheduling posts. Daily DM replies and comment management are not included at the moment.",
       },
       {
-        q: "Design kitne din mein milega?",
-        a: "Single poster ka target delivery time 24–48 ghante hai. Monthly plans aur websites ke liye timeline project confirm karte waqt batayi jayegi.",
+        q: "How long does a design take?",
+        a: "The target delivery time for a single poster is 24–48 hours. For monthly plans and websites, the timeline is confirmed when the project is finalised.",
       },
       {
-        q: "Kitni revisions milengi?",
-        a: "Starter plan mein 2 revisions included hain. Baaki packages aur one-time projects ki revision scope project confirm karte waqt clear ki jayegi.",
+        q: "How many revisions do I get?",
+        a: "The Starter plan includes 2 revisions. The revision scope for other packages and one-time projects is agreed when the project is confirmed.",
       },
       {
-        q: "Payment kaise hoga?",
-        a: "50% advance aur 50% final delivery ke baad. UPI payment available hai.",
+        q: "How does payment work?",
+        a: "50% in advance and 50% after final delivery. UPI payment is available.",
       },
       {
-        q: "Kya long-term contract hai?",
-        a: "Nahi, monthly plans month-to-month hain. Agle month continue karna aapke decision par hai.",
+        q: "Is there a long-term contract?",
+        a: "No, monthly plans run month to month. Continuing the next month is entirely your decision.",
       },
     ],
   },
@@ -556,21 +551,20 @@ const site = {
   // ---------- Contact ----------
   contact: {
     eyebrow: "GET IN TOUCH",
-    heading: "Baat karni hai? Seedha message karein.",
+    heading: "Want to talk? Just send a message.",
     subline:
-      "WhatsApp par reply sabse fast milta hai. Instagram ya email par bhi likh sakte hain.",
-    responseNote: "Aam taur par kuch hi ghanton mein reply milta hai.",
+      "WhatsApp gets the fastest reply. You can also reach us on Instagram or by email.",
+    responseNote: "We usually reply within a few hours.",
   },
 
   // ---------- Seasonal CTA (change per campaign) ----------
   finalCta: {
     label: "FESTIVAL OFFER",
-    heading: "Apne business ko dijiye ek festive, premium look.",
-    text:
-      "Festival pack mein 5 creative posters — launch offer ₹999. Apna campaign pehle se plan karein.",
-    buttonLabel: "Festival pack book karein",
+    heading: "Give your business a festive, premium look.",
+    text: "The festival pack includes 5 creative posters — launch offer ₹999. Plan your campaign in advance.",
+    buttonLabel: "Book the festival pack",
     message:
-      "Hi Kalavia Creatives, mujhe ₹999 wala festival pack chahiye. Details bataiye.",
+      "Hi Kalavia Creatives, I would like the ₹999 festival pack. Please share the details.",
   },
 
   // ---------- Footer ----------
@@ -590,9 +584,9 @@ const site = {
     // Set this to your live URL after deploying (used for OG image + sitemap).
     siteUrl: "https://kalavia-creatives.vercel.app",
     title:
-      "Kalavia Creatives — Posters, reels aur premium websites for your business",
+      "Kalavia Creatives — Posters, reels and premium websites for your business",
     description:
-      "Creative studio for cafés, restaurants, salons, jewellery, boutiques & gyms. Scroll-stopping posters, edited reels aur premium websites. Launch offers aur pehla poster free.",
+      "Creative studio for cafés, restaurants, salons, jewellery shops, boutiques & gyms. Scroll-stopping posters, edited reels and premium websites. Launch offers and your first poster free.",
     ogImage: "/og.jpg",
   },
 };

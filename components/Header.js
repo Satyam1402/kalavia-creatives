@@ -64,7 +64,7 @@ export default function Header() {
           <button
             className="menu-btn"
             onClick={() => setOpen(true)}
-            aria-label="Menu kholein"
+            aria-label="Open menu"
             aria-expanded={open}
             aria-controls="mobile-drawer"
           >
@@ -100,7 +100,7 @@ export default function Header() {
                 <button
                   className="menu-btn"
                   onClick={() => setOpen(false)}
-                  aria-label="Menu band karein"
+                  aria-label="Close menu"
                 >
                   <X size={24} />
                 </button>
