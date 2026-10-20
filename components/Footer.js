@@ -1,5 +1,5 @@
 import site, { waLink } from "@/data/site";
-import BrandK from "@/components/BrandK";
+import LogoFull from "@/components/LogoFull";
 import { InstagramIcon, WhatsAppIcon } from "@/components/icons";
 import { Mail } from "lucide-react";
 
@@ -9,9 +9,8 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <a href="#top" className="brand" aria-label={site.brand.name}>
-            <BrandK />
-            <span className="brand-name">{site.brand.name}</span>
+          <a href="#top" className="footer-logo" aria-label={site.brand.name}>
+            <LogoFull />
           </a>
           <p className="footer-tagline">{footer.tagline}</p>
         </div>
@@ -43,13 +42,6 @@ export default function Footer() {
             rel="noopener noreferrer"
           >
             <WhatsAppIcon size={17} /> {footer.primaryWaDisplay}
-          </a>
-          <a
-            href={waLink(site.whatsapp.defaultMessage, site.whatsapp.secondary)}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <WhatsAppIcon size={17} /> {footer.secondaryWaDisplay}
           </a>
         </div>
       </div>

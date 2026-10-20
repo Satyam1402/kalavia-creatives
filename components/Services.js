@@ -3,7 +3,7 @@ import {
   Clapperboard,
   Sparkles,
   UtensilsCrossed,
-  UserRoundCog,
+  Globe,
   PenTool,
 } from "lucide-react";
 import site, { waLink } from "@/data/site";
@@ -13,9 +13,9 @@ import Reveal from "@/components/Reveal";
 const ICONS = {
   posters: Images,
   reels: Clapperboard,
+  web: Globe,
   festival: Sparkles,
   menu: UtensilsCrossed,
-  profile: UserRoundCog,
   logo: PenTool,
 };
 

@@ -3,39 +3,52 @@
 import { useState } from "react";
 import site from "@/data/site";
 
-// A polished CSS "campaign poster" mockup. Used in the portfolio grid and the
-// hero. If `image` is provided and loads, the real image is shown instead.
+// An art-directed CSS "campaign poster" mockup. Each item is colour-graded and
+// laid out by its `kind` (industry) and `layout` (composition), so the set
+// reads as varied work from the same studio — without any image files.
+//
+// If `item.image` is provided and loads, the real photo is shown instead.
 export default function PosterMockup({ item, className = "" }) {
   const [imgOk, setImgOk] = useState(Boolean(item.image));
+  const kind = item.kind || "restaurant";
+  const layout = item.layout || "editorial";
 
   return (
     <div
-      className={`poster poster-p${item.palette} ${className}`}
+      className={`poster poster--${kind} poster--${layout} ${className}`}
       data-has-image={imgOk ? "true" : "false"}
     >
-      {imgOk && (
+      {imgOk ? (
         <img
           src={item.image}
-          alt={`${item.title} — ${item.category}`}
+          alt={`${item.title} — ${item.category} concept`}
           loading="lazy"
           onError={() => setImgOk(false)}
           className="poster-real"
         />
-      )}
+      ) : (
+        <div className="poster-art" aria-hidden="true">
+          <span className="poster-glow" />
+          <span className="poster-motif">{item.glyph}</span>
 
-      {!imgOk && (
-        <div className="poster-mock" aria-hidden="true">
-          <div className="poster-top">
-            <span className="poster-brand">{site.brand.name}</span>
-            {item.offer && <span className="poster-offer">{item.offer}</span>}
-          </div>
+          <div className="poster-frame">
+            <div className="poster-head">
+              <span className="poster-mark">{site.brand.name}</span>
+              {item.tag && <span className="poster-tag">{item.tag}</span>}
+            </div>
 
-          <div className="poster-emoji">{item.emoji}</div>
+            <div className="poster-mid">
+              {item.category && (
+                <span className="poster-cat">{item.category}</span>
+              )}
+              <h4 className="poster-title">{item.title}</h4>
+              <span className="poster-rule" />
+              {item.line && <p className="poster-line">{item.line}</p>}
+            </div>
 
-          <div className="poster-bottom">
-            <span className="poster-cat">{item.category}</span>
-            <h4 className="poster-title">{item.title}</h4>
-            <p className="poster-line">{item.line}</p>
+            <div className="poster-foot">
+              {item.offer && <span className="poster-offer">{item.offer}</span>}
+            </div>
           </div>
         </div>
       )}

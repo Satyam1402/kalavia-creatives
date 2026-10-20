@@ -11,19 +11,10 @@ export default function Contact() {
     {
       key: "wa1",
       icon: <WhatsAppIcon size={22} />,
-      label: "WhatsApp (primary)",
+      label: "WhatsApp",
       value: footer.primaryWaDisplay,
       sub: "Sabse fast reply",
       href: waLink(whatsapp.defaultMessage, whatsapp.primary),
-      accent: "wa",
-    },
-    {
-      key: "wa2",
-      icon: <WhatsAppIcon size={22} />,
-      label: "WhatsApp (alternate)",
-      value: footer.secondaryWaDisplay,
-      sub: "Doosra number",
-      href: waLink(whatsapp.defaultMessage, whatsapp.secondary),
       accent: "wa",
     },
     {

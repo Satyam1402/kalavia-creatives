@@ -20,8 +20,10 @@ export default function SingleServices() {
               <div className="single-row" key={item.name}>
                 <span className="single-name">{item.name}</span>
                 <span className="single-prices">
-                  <span className="single-standard">{item.standard}</span>
                   <span className="single-launch">{item.launch}</span>
+                  <span className="single-after">
+                    {singleServices.standardFromLabel} {item.standard}
+                  </span>
                 </span>
                 <a
                   className="single-cta"

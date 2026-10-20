@@ -26,11 +26,13 @@ export default function PricingPlans() {
               <h3>{plan.name}</h3>
 
               <div className="plan-price-row">
-                <span className="plan-standard">{plan.standard}</span>
                 <span className="plan-launch">{plan.launch}</span>
                 <span className="per">{plan.period}</span>
               </div>
-              <div className="plan-offer-note">{plans.offerNote}</div>
+              <div className="plan-after">
+                {plans.standardFromLabel} {plan.standard}
+                {plan.period}
+              </div>
 
               <ul className="plan-features">
                 {plan.features.map((f) => (

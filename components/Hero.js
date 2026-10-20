@@ -1,29 +1,83 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { useEffect, useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
 import site, { waLink } from "@/data/site";
 import PosterMockup from "@/components/PosterMockup";
 import { WhatsAppIcon } from "@/components/icons";
 
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
-};
-const item = {
-  hidden: { opacity: 0, y: 22 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-};
+const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export default function Hero() {
-  const { hero, portfolio } = site;
-  const reduce = useReducedMotion();
-  const float = reduce
-    ? {}
-    : { animate: { y: [0, -12, 0] }, transition: { duration: 6, repeat: Infinity, ease: "easeInOut" } };
+  const { hero, portfolio, reels } = site;
+  const root = useRef(null);
+
+  useIso(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const el = root.current;
+
+    const ctx = gsap.context((self) => {
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Entrance — masked line reveal + staggered copy + artwork
+        gsap.set(".hl-line", { yPercent: 115 });
+        gsap.set(".hero-rise", { opacity: 0, y: 22 });
+        gsap.set(".hc", { opacity: 0, y: 26, scale: 0.96 });
+
+        const tl = gsap.timeline({
+          defaults: { ease: "power3.out" },
+          delay: 0.15,
+        });
+        tl.to(".hl-line", { yPercent: 0, duration: 0.7, stagger: 0.12 })
+          .to(
+            ".hero-rise",
+            { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 },
+            "-=0.35"
+          )
+          .to(
+            ".hc",
+            { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.09 },
+            "-=0.5"
+          );
+
+        // Scroll parallax: heading lags, artwork scales up gently
+        gsap.to(".hero-copy", {
+          yPercent: 16,
+          ease: "none",
+          scrollTrigger: {
+            trigger: el,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+        gsap.fromTo(
+          ".hero-stage",
+          { scale: 1 },
+          {
+            scale: 1.08,
+            ease: "none",
+            scrollTrigger: {
+              trigger: el,
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          }
+        );
+      });
+
+      return () => mm.revert();
+    }, el);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section className="hero" id="top">
+    <section className="hero" id="top" ref={root}>
       <div className="hero-bg" aria-hidden="true">
         <span className="orb orb-1" />
         <span className="orb orb-2" />
@@ -32,31 +86,23 @@ export default function Hero() {
       </div>
 
       <div className="container hero-inner">
-        <motion.div
-          className="hero-copy"
-          variants={container}
-          initial="hidden"
-          animate="show"
-        >
-          <motion.span className="eyebrow" variants={item}>
-            {hero.eyebrow}
-          </motion.span>
+        <div className="hero-copy">
+          <span className="hero-eyebrow hero-rise">{hero.eyebrow}</span>
 
-          <motion.h1 variants={item}>
-            {hero.headingPre}{" "}
-            <span className="grad-text grad-animate">{hero.headingAccent}</span>
-          </motion.h1>
+          <h1 className="hero-title">
+            <span className="hl-mask">
+              <span className="hl-line">{hero.headingPre}</span>
+            </span>
+            <span className="hl-mask">
+              <span className="hl-line grad-text grad-animate">
+                {hero.headingAccent}
+              </span>
+            </span>
+          </h1>
 
-          <motion.p className="subline" variants={item}>
-            {hero.subline}
-          </motion.p>
+          <p className="subline hero-rise">{hero.subline}</p>
 
-          <motion.div className="hero-badge" variants={item}>
-            <span className="hero-badge-tag">{hero.badge}</span>
-            <span className="hero-badge-note">{hero.badgeNote}</span>
-          </motion.div>
-
-          <motion.div className="hero-actions" variants={item}>
+          <div className="hero-actions hero-rise">
             <a
               className="btn btn-primary btn-shine"
               href={waLink(hero.primaryMsg)}
@@ -70,53 +116,53 @@ export default function Hero() {
               {hero.secondaryBtn}
               <ArrowRight size={18} />
             </a>
-          </motion.div>
+          </div>
 
-          <motion.ul className="hero-stats" variants={item}>
-            {hero.stats.map((s) => (
-              <li key={s.label}>
-                <span className="stat-num">{s.num}</span>
-                <span className="stat-label">{s.label}</span>
-              </li>
+          <div className="hero-free hero-rise">
+            <span className="hero-free-tag">{hero.badge}</span>
+            <span className="hero-free-note">{hero.badgeNote}</span>
+          </div>
+
+          <ul className="hero-trust hero-rise">
+            {hero.trust.map((t) => (
+              <li key={t}>{t}</li>
             ))}
-          </motion.ul>
-        </motion.div>
+          </ul>
+        </div>
 
-        {/* Right-side art-directed composition */}
-        <motion.div
-          className="hero-visual"
-          initial={reduce ? false : { opacity: 0, scale: 0.94, y: 20 }}
-          animate={reduce ? {} : { opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          aria-hidden="true"
-        >
-          <motion.div className="phone" {...float}>
-            <div className="phone-notch" />
-            <div className="phone-screen">
-              <PosterMockup item={portfolio.items[2]} className="poster-in-phone" />
+        <div className="hero-visual" aria-hidden="true">
+          <div className="hero-stage">
+            <div className="hc hc-main">
+              <PosterMockup item={portfolio.items[0]} />
             </div>
-          </motion.div>
 
-          <motion.div
-            className="float-card reel-card"
-            {...(reduce
-              ? {}
-              : { animate: { y: [0, 10, 0] }, transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 } })}
-          >
-            <PosterMockup item={portfolio.items[0]} />
-            <span className="reel-badge">▶ Reel</span>
-          </motion.div>
+            <div className="hc hc-phone">
+              <div className="phone">
+                <span className="phone-notch" />
+                <div className="phone-screen">
+                  <PosterMockup
+                    item={reels.items[2]}
+                    className="poster-in-phone"
+                  />
+                  <span className="phone-reel-badge">▶ Reel</span>
+                </div>
+              </div>
+            </div>
 
-          <motion.div
-            className="float-card offer-chip"
-            {...(reduce
-              ? {}
-              : { animate: { y: [0, -8, 0] }, transition: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 } })}
-          >
-            <span className="offer-chip-top">PEHLA POSTER</span>
-            <span className="offer-chip-big">FREE</span>
-          </motion.div>
-        </motion.div>
+            <div className="hc hc-salon">
+              <PosterMockup item={portfolio.items[2]} />
+            </div>
+
+            <div className="hc hc-jewel">
+              <PosterMockup item={portfolio.items[3]} />
+            </div>
+
+            <div className="hc hc-chip">
+              <span className="hc-chip-top">FIRST POSTER</span>
+              <span className="hc-chip-big">FREE</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
