@@ -12,6 +12,11 @@ export function waLink(message, number = PRIMARY_WA) {
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 
+// Launch offer terms — poori baat sirf pricing section mein, one-time services
+// sirf usi ko refer karti hai (same text do jagah repeat nahi hota).
+const LAUNCH_OFFER =
+  "Launch pricing — pehle 10 clients ke liye ya 31 December 2026 tak, jo pehle aaye. Kaata hua price standard rate hai, jo 1 Jan 2027 se lagu hoga.";
+
 const site = {
   // ---------- Brand ----------
   brand: {
@@ -408,9 +413,7 @@ const site = {
   plans: {
     eyebrow: "MONTHLY PLANS",
     heading: "Apne business ke liye sahi plan chuniye.",
-    offerLine:
-      "Launch pricing — pehle 10 clients ke liye ya 31 December 2026 tak, jo pehle aaye. Uske baad standard price.",
-    standardFromLabel: "1 Jan 2027 se",
+    offerLine: LAUNCH_OFFER,
     buttonLabel: "Ye plan chahiye",
     items: [
       {
@@ -460,9 +463,7 @@ const site = {
   singleServices: {
     eyebrow: "ONE-TIME SERVICES",
     heading: "Ek design chahiye? Woh bhi ho jayega.",
-    standardFromLabel: "1 Jan 2027 se",
-    offerNote:
-      "Launch pricing valid for the first 10 clients or until 31 December 2026, whichever comes first. 1 Jan 2027 se standard price.",
+    offerNote: "Yahi launch pricing one-time services par bhi lagu hai.",
     // WhatsApp message template; [service] is replaced by the service name.
     ctaMsgTemplate:
       "Hi Kalavia Creatives, mujhe [service] chahiye. Details bataiye.",
@@ -484,19 +485,19 @@ const site = {
     steps: [
       {
         title: "WhatsApp par baat karein",
-        text: "We'll understand your business, offer and design requirements.",
+        text: "Aapka business, offer aur design requirement samajhte hain.",
       },
       {
         title: "Pehla poster free",
-        text: "We'll prepare an initial sample design.",
+        text: "Ek sample design bana kar bhejte hain — bilkul free.",
       },
       {
         title: "Approve and confirm",
-        text: "If you like the work, confirm the agreed scope and pay 50% advance.",
+        text: "Pasand aaye to scope confirm karein aur 50% advance dein.",
       },
       {
         title: "Final delivery",
-        text: "We'll deliver the approved work after the remaining payment, as agreed.",
+        text: "Baaki payment ke baad final files, jaisa tay hua tha.",
       },
     ],
   },
@@ -557,7 +558,7 @@ const site = {
     eyebrow: "GET IN TOUCH",
     heading: "Baat karni hai? Seedha message karein.",
     subline:
-      "WhatsApp par reply sabse fast milta hai. Instagram ya email par bhi likh sakte hain — aapke business ke liye pehla poster free banayenge.",
+      "WhatsApp par reply sabse fast milta hai. Instagram ya email par bhi likh sakte hain.",
     responseNote: "Aam taur par kuch hi ghanton mein reply milta hai.",
   },
 

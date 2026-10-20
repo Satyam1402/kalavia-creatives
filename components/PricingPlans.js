@@ -26,12 +26,9 @@ export default function PricingPlans() {
               <h3>{plan.name}</h3>
 
               <div className="plan-price-row">
+                <s className="plan-standard">{plan.standard}</s>
                 <span className="plan-launch">{plan.launch}</span>
                 <span className="per">{plan.period}</span>
-              </div>
-              <div className="plan-after">
-                {plans.standardFromLabel} {plan.standard}
-                {plan.period}
               </div>
 
               <ul className="plan-features">

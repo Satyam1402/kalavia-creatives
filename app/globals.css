@@ -84,6 +84,7 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
+  overflow-wrap: break-word;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -226,17 +227,20 @@ section {
   align-items: center;
   justify-content: center;
   gap: 9px;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 0.84rem + 0.3vw, 1rem);
   font-weight: 600;
-  padding: 14px 24px;
+  padding: 13px clamp(16px, 4vw, 24px);
   min-height: 48px;
+  max-width: 100%;
   border-radius: var(--r-pill);
   border: 1px solid transparent;
   transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease,
     border-color 0.2s ease;
-  line-height: 1.2;
+  line-height: 1.25;
   overflow: hidden;
-  white-space: nowrap;
+  /* Labels wrap instead of being cut off on small screens. */
+  white-space: normal;
+  text-align: center;
 }
 
 .btn:active {
@@ -812,6 +816,8 @@ section {
 
 .poster-large {
   width: min(360px, 82vw);
+  /* 4:5 poster, so cap the width by the viewport height too. */
+  width: min(360px, 82vw, 64svh);
 }
 
 .poster-real {
@@ -1179,19 +1185,26 @@ section {
   border: 0;
 }
 
-.reel-pausehint {
+.reel-sound {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  right: 10px;
+  bottom: 10px;
   z-index: 3;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   color: #fff;
-  background: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  transition: background 0.2s ease;
+}
+
+.reel-sound:hover {
+  background: rgba(0, 0, 0, 0.7);
 }
 
 .reel-scrubber {
@@ -1387,6 +1400,13 @@ section {
 .portfolio-btn:hover .portfolio-hover,
 .portfolio-btn:focus-visible .portfolio-hover {
   opacity: 1;
+}
+
+@media (hover: none) {
+  .portfolio-hover {
+    opacity: 1;
+    background: linear-gradient(0deg, rgba(5, 8, 20, 0.92), transparent 58%);
+  }
 }
 
 .portfolio-cat {
@@ -1696,7 +1716,7 @@ section {
 .plans-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-  gap: clamp(16px, 2.2vw, 22px);
+  gap: clamp(24px, 2.2vw, 26px);
   align-items: stretch;
 }
 
@@ -1770,12 +1790,6 @@ section {
   font-size: 0.92rem;
   font-weight: 500;
   color: var(--text-muted);
-}
-
-.plan-after {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin-top: 10px;
 }
 
 .plan-features {
@@ -1853,9 +1867,10 @@ section {
   justify-self: end;
 }
 
-.single-after {
-  font-size: 0.72rem;
+.single-standard {
+  font-size: 0.8rem;
   color: var(--text-muted);
+  text-decoration-color: rgba(247, 37, 133, 0.7);
 }
 
 .single-launch {
@@ -1887,6 +1902,17 @@ section {
 .single-cta:hover {
   border-color: var(--wa);
   color: var(--wa);
+}
+
+@media (min-width: 560px) {
+  .single-row {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas: "name prices cta";
+    gap: 8px 18px;
+  }
+  .single-cta {
+    justify-self: end;
+  }
 }
 
 .price-note {
@@ -2372,6 +2398,8 @@ section {
 }
 
 .lightbox-body {
+  max-width: 100%;
+  max-height: 100%;
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
   border-radius: var(--r-md);
   overflow: hidden;
@@ -2405,234 +2433,6 @@ section {
 
 .hl-line {
   display: block;
-}
-
-/* ============================================================
-   Cinematic campaign showcase
-   ============================================================ */
-.showcase {
-  position: relative;
-}
-
-.showcase-intro {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Pinned stage is desktop-only; hidden on mobile so there is no scroll trap */
-.cwrap {
-  display: none;
-}
-
-.cpin {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  height: 100svh;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-}
-
-.cpin-bg {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    60% 50% at 50% 42%,
-    rgba(123, 47, 247, 0.16),
-    transparent 70%
-  );
-  pointer-events: none;
-}
-
-.cstage {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: var(--maxw);
-  margin-inline: auto;
-  padding: 0 clamp(44px, 7vw, 104px);
-  height: min(72vh, 560px);
-}
-
-.cscene {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(24px, 5vw, 72px);
-  align-items: center;
-  padding: 0 clamp(16px, 3vw, 24px);
-  will-change: opacity, transform;
-}
-
-.cscene-copy {
-  min-width: 0;
-}
-
-.cscene-index {
-  display: block;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(248, 248, 252, 0.3);
-  margin-bottom: 16px;
-}
-
-.cscene h3 {
-  font-size: clamp(1.9rem, 4.4vw, 3.2rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.04;
-}
-
-.cscene-rule {
-  display: block;
-  width: 52px;
-  height: 3px;
-  border-radius: 3px;
-  margin: 18px 0;
-  background: var(--gradient);
-}
-
-.cscene p {
-  color: var(--text-muted);
-  font-size: var(--fs-lead);
-  max-width: 38ch;
-}
-
-.cscene-art {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  will-change: transform;
-}
-
-.cscene-poster {
-  width: min(300px, 30vw);
-  position: relative;
-  z-index: 2;
-  filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.5));
-}
-
-.cscene-reel {
-  position: absolute;
-  right: 2%;
-  bottom: -8%;
-  width: 30%;
-  min-width: 108px;
-  z-index: 1;
-}
-
-.crail {
-  position: absolute;
-  z-index: 2;
-  left: clamp(10px, 2vw, 28px);
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.crail-track {
-  position: relative;
-  width: 3px;
-  height: 160px;
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.12);
-  overflow: hidden;
-}
-
-.crail-fill {
-  position: absolute;
-  inset: 0;
-  transform-origin: top center;
-  background: var(--gradient);
-}
-
-.crail-labels {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 160px;
-}
-
-.crail-item {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--text);
-}
-
-.cpin-cta {
-  position: absolute;
-  z-index: 2;
-  bottom: clamp(18px, 4vh, 40px);
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* Stacked fallback (mobile + reduced motion) */
-.cstack {
-  display: grid;
-  gap: clamp(28px, 6vw, 52px);
-}
-
-.cstack-item {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
-  align-items: center;
-}
-
-.cstack-art {
-  width: 100%;
-  max-width: 300px;
-}
-
-.cstack-copy {
-  min-width: 0;
-}
-
-.cstack-copy h3 {
-  font-size: clamp(1.5rem, 6vw, 2rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.08;
-}
-
-.cstack-copy p {
-  color: var(--text-muted);
-  font-size: var(--fs-lead);
-  max-width: 44ch;
-}
-
-@media (min-width: 620px) {
-  .cstack-item {
-    grid-template-columns: minmax(0, 280px) 1fr;
-    gap: clamp(24px, 4vw, 44px);
-  }
-}
-
-/* Enable the pinned stage only on wider viewports */
-@media (min-width: 900px) {
-  .cwrap {
-    display: block;
-    height: 300vh;
-  }
-  .cstack {
-    display: none;
-  }
-}
-
-/* Reduced motion: the component drops the pin and shows the stack everywhere */
-.cstack--show {
-  display: grid !important;
 }
 
 /* ============================================================
@@ -2725,6 +2525,8 @@ section {
 
 .story-phone {
   width: clamp(224px, 40vw, 300px);
+  /* Never taller than the pinned viewport (landscape / short screens). */
+  width: min(clamp(224px, 40vw, 300px), 42svh);
   position: relative;
   z-index: 3;
 }
@@ -3297,7 +3099,7 @@ section {
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
-  font-size: clamp(3.4rem, 22vw, 18rem);
+  font-size: clamp(3rem, 19.5vw, 18rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 0.9;

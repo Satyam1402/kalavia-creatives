@@ -21,9 +21,7 @@ export default function SingleServices() {
                 <span className="single-name">{item.name}</span>
                 <span className="single-prices">
                   <span className="single-launch">{item.launch}</span>
-                  <span className="single-after">
-                    {singleServices.standardFromLabel} {item.standard}
-                  </span>
+                  <s className="single-standard">{item.standard}</s>
                 </span>
                 <a
                   className="single-cta"

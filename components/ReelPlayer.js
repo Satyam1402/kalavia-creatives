@@ -1,26 +1,54 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { Play, Pause } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Play, Volume2, VolumeX } from "lucide-react";
+import { useReducedMotion } from "motion/react";
 
-// Real-video reel. preload="metadata" fetches only enough to show the first
-// frame; the full clip downloads on tap. No autoplay; sound only on a user
-// gesture. `poster` (set in data/site.js) is shown before playback starts.
-// `badge` is the format label (REEL / AI VIDEO) shown over the frame.
+// Real-video reel. Plays muted and looping while the card is on screen (like a
+// feed), pauses when it scrolls away so nothing downloads or runs in the
+// background. Tap the frame to pause/resume, the speaker button for sound.
+// Reduced motion: nothing autoplays, the card waits for a tap.
+// `poster` (set in data/site.js) shows before the first frame is decoded.
 export default function ReelPlayer({ item, badge }) {
   const vref = useRef(null);
   const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(true);
+  const reduce = useReducedMotion();
+
+  // Autoplay only while at least half the card is visible.
+  useEffect(() => {
+    const v = vref.current;
+    if (!v || reduce) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          v.play().catch(() => {});
+        } else {
+          v.pause();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    io.observe(v);
+    return () => io.disconnect();
+  }, [reduce]);
 
   const toggle = () => {
     const v = vref.current;
     if (!v) return;
-    if (v.paused) {
-      v.play();
-      setPlaying(true);
-    } else {
-      v.pause();
-      setPlaying(false);
-    }
+    if (v.paused) v.play().catch(() => {});
+    else v.pause();
+  };
+
+  const toggleSound = (e) => {
+    e.stopPropagation();
+    const v = vref.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setMuted(v.muted);
+    if (v.paused) v.play().catch(() => {});
   };
 
   return (
@@ -32,39 +60,39 @@ export default function ReelPlayer({ item, badge }) {
         poster={item.poster || undefined}
         playsInline
         loop
+        muted={muted}
         preload="metadata"
-        controls={playing}
         onClick={toggle}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
       />
 
-      {!playing && (
-        <>
-          <span className="reel-shade" aria-hidden="true" />
-          <span className="reel-top">
-            {badge && (
-              <span className={"reel-tag reel-tag--" + item.format}>
-                {badge}
-              </span>
-            )}
-            <span className="reel-cat">{item.category}</span>
-          </span>
-          <button
-            className="reel-play reel-play-btn"
-            onClick={toggle}
-            aria-label={`${item.title} play karein`}
-          >
-            <Play size={22} strokeWidth={2} fill="currentColor" />
-          </button>
-        </>
-      )}
+      <span className="reel-shade" aria-hidden="true" />
 
-      {playing && (
-        <button className="reel-pausehint" onClick={toggle} aria-label="Pause">
-          <Pause size={16} />
+      <span className="reel-top">
+        {badge && (
+          <span className={"reel-tag reel-tag--" + item.format}>{badge}</span>
+        )}
+        <span className="reel-cat">{item.category}</span>
+      </span>
+
+      {!playing && (
+        <button
+          className="reel-play reel-play-btn"
+          onClick={toggle}
+          aria-label={`${item.title} play karein`}
+        >
+          <Play size={22} strokeWidth={2} fill="currentColor" />
         </button>
       )}
+
+      <button
+        className="reel-sound"
+        onClick={toggleSound}
+        aria-label={muted ? "Sound on karein" : "Sound off karein"}
+      >
+        {muted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+      </button>
     </div>
   );
 }

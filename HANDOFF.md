@@ -43,10 +43,14 @@ convert into **WhatsApp enquiries**.
 - **ONE WhatsApp number only: 919131267176** (the secondary number was removed).
 - **No fake testimonials, clients, reviews, stats or guarantees.** Portfolio items
   are demonstration concepts (not client work).
-- Pricing format: **no struck-out prices.** Show highlighted **launch price** +
-  a small "**1 Jan 2027 se ₹Y**" line (`plans.standardFromLabel` /
-  `singleServices.standardFromLabel` + each item's `standard`). Do NOT invent
-  revision counts (only Starter = 2 revisions is confirmed). Website packages
+- Pricing format: **struck-out standard price + highlighted launch price**
+  (semantic `<s class="plan-standard">` / `<s class="single-standard">` next to
+  `.plan-launch` / `.single-launch`). **Note:** this was briefly changed to a
+  "Launch price ₹X — 1 Jan 2027 se ₹Y" format and then **deliberately reverted**
+  back to struck-out prices — so don't "fix" it back again without asking.
+  (`standardFromLabel` and the `.plan-after`/`.single-after` styles are gone.)
+  Do NOT invent revision counts (only Starter = 2 revisions is confirmed).
+  Website packages
   (₹3,999 / ₹6,999 / ₹9,999) are **proposed scopes** — domain, hosting, store,
   payments, booking and maintenance are explicitly NOT included unless quoted.
 - Mobile-first; must look perfect at **360px**. Respect `prefers-reduced-motion`
